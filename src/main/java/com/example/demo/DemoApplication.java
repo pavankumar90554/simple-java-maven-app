@@ -11,7 +11,7 @@ public class DemoApplication {
 
     @GetMapping("/")
     public String hello() {
-        return "Hello from Spring Boot + Docker + Argo CD 🚀";
+        return "Hello GitOps agrocd 🚀";
     }
 
     public static void main(String[] args) {
