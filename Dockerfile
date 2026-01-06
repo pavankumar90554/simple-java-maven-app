@@ -1,9 +1,9 @@
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-COPY target/my-app-1.0-SNAPSHOT.jar app.jar
+COPY target/simple-java-app-1.0.jar app.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
