@@ -11,7 +11,7 @@ public class DemoApplication {
 
     @GetMapping("/")
     public String hello() {
-        return "Hello GitOps agrocd 🚀";
+              return "Hello from GitOps – updated via Argo CD 🚀";
     }
 
     public static void main(String[] args) {
