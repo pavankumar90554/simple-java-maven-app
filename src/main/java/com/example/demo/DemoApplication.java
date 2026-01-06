@@ -11,7 +11,7 @@ public class DemoApplication {
 
     @GetMapping("/")
     public String hello() {
-              return "Hello 🚀 Updated automatically via GitOps!";
+              return "Hello from GitOps AUTO SYNC 🚀";
     }
 
     public static void main(String[] args) {
