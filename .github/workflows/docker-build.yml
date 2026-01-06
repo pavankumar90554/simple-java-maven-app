@@ -38,11 +38,34 @@ jobs:
       run: |
         IMAGE_TAG=$(git rev-parse --short HEAD)
         sed -i "s/tag:.*/tag: \"$IMAGE_TAG\"/" simple-java-helm/values.yaml
-
     - name: Commit Helm change
       run: |
         git config user.name "github-actions"
         git config user.email "actions@github.com"
         git add simple-java-helm/values.yaml
-        git commit -m "Update image tag to $IMAGE_TAG"
-        git push
+        git commit -m "Update image tag" || echo "No changes to commit"
+        git pull --rebase origin master
+        git push origin master
+    - name: Trivy Image Scan
+      uses: aquasecurity/trivy-action@0.24.0
+      with:
+        image-ref: pavankumar213/simple-java-app:latest
+        severity: HIGH,CRITICAL
+        format: table
+        exit-code: 1
+
+
+    - uses: actions/checkout@v4
+      with:
+      fetch-depth: 0
+
+   - name: Commit Helm change
+     run: |
+       git config user.name "github-actions"
+       git config user.email "actions@github.com"
+
+       git add simple-java-helm/values.yaml
+       git commit -m "Update image tag" || echo "No changes to commit"
+
+       git pull --rebase origin master
+       git push origin master
